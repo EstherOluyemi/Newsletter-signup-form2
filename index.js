@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailField = document.querySelector('.email-field');
     const successContainer = document.querySelector('.success-container');
     const dismissButton = document.querySelector('.dismiss-btn');
-    const formContainer = document.querySelector('.container')
+    const formContainer = document.querySelector('.grid-container')
     const errorMessage = document.querySelector('.error-message');
     const emailValue = document.querySelector('#email-value');
+
     //email validation function 
     const isValidEmail = (email) => {
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formContainer.style.display = 'none';
             successContainer.style.display = 'flex';
             successContainer.classList.add('show');
-            emailValue.innerText += email.value;
+            emailValue.innerText += email;
         } else {
             errorMessage.textContent = 'Invalid email required';
             errorMessage.style.display = 'block';
@@ -35,12 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     dismissButton.addEventListener('click', () => {
         successContainer.classList.remove('show');
         successContainer.style.display = 'none';
-        if (window.innerWidth >= 700) {
-            formContainer.style.display = 'flex';  // Only for desktop
-        } else {
-            formContainer.style.display = 'block'; // Keep normal mobile layout
-        }    
+        formContainer.style.display ='grid';
         errorMessage.style.display = 'none';
         emailField.style.border = '1px solid hsl(0, 0%,58%)';
+        emailValue.innerText = '';
     })
 })
